@@ -6,7 +6,7 @@ This repository contains the Next.js website and shared browser-safe packages. T
 
 Run `npm ci` and `npm run dev`, then open <http://localhost:3000>. Explore <http://localhost:3000/preview> for an explicitly labelled interactive sample. Private customer data requires the configured product API.
 
-Use `apps/web` as the Vercel root with access to outside workspace files. Set browser-safe Supabase and product API variables from `apps/web/.env.example`. Google OAuth secrets and backend keys belong only in server settings. Git deployment is disabled until explicit approval.
+Use `apps/web` as the Vercel root with access to outside workspace files. Set browser-safe Supabase and product API variables from `apps/web/.env.example`. Google OAuth secrets and backend keys belong only in server settings. Both the repository-root and app-root Vercel configuration disable Git deployment until explicit approval, including projects initially connected with the repository root selected.
 
 Read [setup and deployment](docs/nila/setup-and-deployment.md), [design system](docs/nila/design-system.md), [verification results](docs/nila/verification-results.md), and [launch gates](docs/nila/launch-gates.md).
 
