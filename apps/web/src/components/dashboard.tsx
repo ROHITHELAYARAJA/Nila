@@ -13,10 +13,7 @@ import {
 } from "@phosphor-icons/react";
 import { useProduct } from "./product-context";
 import { Empty, Notice, Skeleton, Field } from "./ui";
-import {
-  activities,
-  challengeActivity,
-} from "../../../../packages/validation/src/index";
+import { activities, challengeActivity } from "@nila/validation";
 export function localDate(timezone = "Asia/Kolkata", date = new Date()) {
   return new Intl.DateTimeFormat("en-CA", {
     timeZone: timezone,
