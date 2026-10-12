@@ -1,0 +1,28 @@
+{
+  "name": "nila-website",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @nila/web",
+    "start": "npm run start -w @nila/web",
+    "build": "npm run build -w @nila/web",
+    "typecheck": "npm run typecheck -w @nila/web",
+    "test:browser": "playwright test",
+    "format": "prettier --check apps packages tests/browser"
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3"
+  },
+  "type": "module"
+}
