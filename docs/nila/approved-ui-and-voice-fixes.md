@@ -39,3 +39,7 @@ Targeted Python and API checks verify spoken approval, units, planned-data rejec
 Backend wellness columns require the pending voice-wellness migration and Render API/voice release before production capture can be claimed. No real call or database migration was performed for this repair.
 
 Local verification: 18 desktop/mobile browser checks passed; 39 Python checks passed across voice wellness, phone, Gather and bridge; 20 targeted API/schema checks passed; production compilation and TypeScript passed. Tested landing/dashboard light and dark states had no Axe violations. Desktop and mobile screenshots were inspected.
+
+Published website commit 0823149a34bde3cb3d13693b55419742310f1eae. Vercel deployment dpl_GQupsEuxo2ibAuHwpLMEdGcYhK18 reports Ready and owns https://nilavoiceai.vercel.app. Backend fix: https://github.com/ROHITHELAYARAJA/Voice-Agent/pull/3, commit 78c6619783ba2c305b7a84be91248919c72163fc.
+
+Read-only production checks confirmed the journal_entries.wellness column and voice_memories table are absent. Supabase migration history lists only nila_initial_tenant_schema and supabase_cron_scheduler. The prepared 202610130001_voice_wellness.sql adds those fields and restricts manual wellness writes; it does not delete historical records. Its ten tenant-isolation checks passed locally. Production database changes and Render release remain an explicit approval step from the original build brief.
