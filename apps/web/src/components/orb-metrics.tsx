@@ -1,7 +1,6 @@
 "use client";
 import type { CSSProperties } from "react";
 import {
-  CaretRightIcon,
   DropIcon,
   LightningIcon,
   MoonStarsIcon,
@@ -15,10 +14,8 @@ import { Reveal } from "./dashboard-motion";
 
 export function OrbMetrics({
   observations,
-  onSelect,
 }: {
   observations: WellnessObservation[];
-  onSelect: (topic: string) => void;
 }) {
   const goals = observedGoals(observations);
   const metrics = [
@@ -26,7 +23,7 @@ export function OrbMetrics({
       topic: "water",
       label: "Water",
       unit: "L",
-      scale: 4,
+      scale: Math.max(4, observedNumber(observations, "water") ?? 0),
       icon: DropIcon,
       tone: "water",
     },
@@ -85,13 +82,6 @@ export function OrbMetrics({
               <div className="orb-card-top">
                 <Icon size={27} weight="duotone" />
                 <h2>{metric.label}</h2>
-                <button
-                  className="round-arrow"
-                  aria-label={`View ${metric.label.toLowerCase()}`}
-                  onClick={() => onSelect(metric.topic)}
-                >
-                  <CaretRightIcon size={18} />
-                </button>
               </div>
               <div className="metric-content">
                 <div>
@@ -104,7 +94,7 @@ export function OrbMetrics({
                       ? "Not reported"
                       : metric.topic === "goals"
                         ? "goals you reported"
-                        : "From your nightly call"}
+                        : "Reported today"}
                   </p>
                 </div>
                 {metric.topic === "sleep" && (

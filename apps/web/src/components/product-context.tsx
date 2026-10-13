@@ -10,6 +10,7 @@ import {
 } from "react";
 import { dateWindow, weeklyRecap } from "@nila/wellness";
 import type { Dashboard } from "@nila/shared-types";
+import { commitAndRefresh } from "@/lib/mutation";
 import { api, browserClient } from "@/lib/supabase";
 import { watchDashboard } from "@/lib/live-dashboard";
 const previewData: Dashboard = {
@@ -244,12 +245,14 @@ export function ProductProvider({
         throw new Error(
           "This is a public preview. Create an account to save private data or place calls.",
         );
-      const result = await api<T>(path, {
-        method,
-        body: body === undefined ? undefined : JSON.stringify(body),
-      });
-      await refresh();
-      return result;
+      return commitAndRefresh(
+        () =>
+          api<T>(path, {
+            method,
+            body: body === undefined ? undefined : JSON.stringify(body),
+          }),
+        refresh,
+      );
     },
     [preview, refresh],
   );

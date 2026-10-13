@@ -32,10 +32,12 @@ export function Reveal({
   children,
   className = "",
   delay = 0,
+  "aria-label": label,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  "aria-label"?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -56,6 +58,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
+      aria-label={label}
       className={`dive-reveal ${className}`}
       style={{ animationDelay: `${delay}ms` }}
     >

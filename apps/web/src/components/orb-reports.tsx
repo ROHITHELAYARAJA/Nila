@@ -2,7 +2,6 @@
 import type { CSSProperties } from "react";
 import type { Journal, Mood } from "@nila/shared-types";
 import {
-  CaretRightIcon,
   ForkKnifeIcon,
   NotebookIcon,
   PersonSimpleRunIcon,
@@ -17,12 +16,10 @@ export function DailyCards({
   journal,
   dates,
   journals,
-  onSelect,
 }: {
   journal?: Journal;
   dates: string[];
   journals: Journal[];
-  onSelect: (topic: string) => void;
 }) {
   const observations = journal?.wellness ?? [];
   const reflection =
@@ -80,13 +77,6 @@ export function DailyCards({
               <div className="orb-card-top">
                 <Icon size={26} weight="duotone" />
                 <h2>{card.title}</h2>
-                <button
-                  className="round-arrow"
-                  aria-label={`Open ${card.title.toLowerCase()}`}
-                  onClick={() => onSelect(card.topic)}
-                >
-                  <CaretRightIcon size={18} />
-                </button>
               </div>
               {card.scale ? (
                 <>
@@ -157,11 +147,9 @@ export function DailyCards({
 export function VoiceReport({
   journal,
   date,
-  onSelect,
 }: {
   journal?: Journal;
   date: string;
-  onSelect: (topic: string) => void;
 }) {
   const topics = [
     ["activity", "🏃", "Movement"],
@@ -190,16 +178,11 @@ export function VoiceReport({
                 journal?.reflection)
               : observation?.value;
           return (
-            <button
-              key={topic}
-              onClick={() => onSelect(topic!)}
-              aria-label={`View report: ${label}`}
-            >
+            <div key={topic} aria-label={`Report: ${label}`}>
               <span aria-hidden="true">{emoji}</span>
               <strong>{label}</strong>
               <span>{value == null ? "Not reported" : String(value)}</span>
-              <CaretRightIcon size={17} />
-            </button>
+            </div>
           );
         })}
       </div>

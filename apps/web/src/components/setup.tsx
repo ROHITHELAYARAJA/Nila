@@ -203,13 +203,19 @@ export function PhoneConsentSetup() {
   }
   async function consent() {
     setBusy(true);
+    setError("");
+    setSaved(false);
     try {
-      await mutate("/consent", {
+      const result = await mutate<{ saved: boolean }>("/consent", {
         adult,
         recurring_calls: calls,
         transcription,
         recording: false,
       });
+      if (result.saved !== true)
+        throw new Error(
+          "Nila did not confirm your permission was saved. Please check before trying again.",
+        );
       setSaved(true);
     } catch (e) {
       setError((e as Error).message);
@@ -276,7 +282,11 @@ export function PhoneConsentSetup() {
         <input
           type="checkbox"
           checked={adult}
-          onChange={(e) => setAdult(e.target.checked)}
+          disabled={busy}
+          onChange={(e) => {
+            setAdult(e.target.checked);
+            setSaved(false);
+          }}
         />
         I am 18 or older.
       </label>
@@ -284,7 +294,11 @@ export function PhoneConsentSetup() {
         <input
           type="checkbox"
           checked={calls}
-          onChange={(e) => setCalls(e.target.checked)}
+          disabled={busy}
+          onChange={(e) => {
+            setCalls(e.target.checked);
+            setSaved(false);
+          }}
         />
         I consent to optional AI check-in calls at times I choose. I can pause
         or revoke them.
@@ -293,7 +307,11 @@ export function PhoneConsentSetup() {
         <input
           type="checkbox"
           checked={transcription}
-          onChange={(e) => setTranscription(e.target.checked)}
+          disabled={busy}
+          onChange={(e) => {
+            setTranscription(e.target.checked);
+            setSaved(false);
+          }}
         />
         I consent to speech processing by my connected providers and private
         journal creation. Transcript retention is off unless I enable it.
@@ -305,9 +323,10 @@ export function PhoneConsentSetup() {
       <button
         className="button"
         disabled={preview || busy || !adult}
+        aria-busy={busy}
         onClick={() => void consent()}
       >
-        Save my choices
+        {busy ? "Saving your choices…" : "Save my choices"}
       </button>
       {saved && (
         <Notice>

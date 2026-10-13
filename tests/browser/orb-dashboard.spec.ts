@@ -1,3 +1,4 @@
+import { validateWellness } from "../../packages/validation/src/wellness";
 import { test, expect } from "@playwright/test";
 import {
   observedNumber,
@@ -152,16 +153,26 @@ test("HyperFrames loops play, pause and respect reduced motion", async ({
     .toBe(true);
   await expect(video).not.toBeVisible();
   await expect(art.locator("img")).toBeVisible();
-  await page
-    .getByText("Explore your 32 wellness connections", { exact: true })
-    .click();
-  await page.locator(".collection-panel").scrollIntoViewIfNeeded();
-  await expect(page.locator(".wellness-drawer").locator("..")).toHaveAttribute(
+  await page.locator(".voice-report").scrollIntoViewIfNeeded();
+  await expect(page.locator(".voice-report").locator("..")).toHaveAttribute(
     "data-revealed",
     "true",
   );
+  await expect(page.locator(".voice-report-rows button")).toHaveCount(0);
   await page.screenshot({
     path: `outputs/nila-${info.project.name}-hyperframes.png`,
     fullPage: true,
   });
+});
+
+test("confirmed voice JSON supplies an unchanged 5 L dashboard value", () => {
+  const quote = "Today, I have drunk 5 L of water.";
+  const observations = [
+    { topic: "water" as const, value: 5, unit: "L" as const, quote },
+  ];
+  validateWellness(observations, [quote]);
+  const dashboardJson = JSON.parse(JSON.stringify(observations));
+  expect(observedNumber(dashboardJson, "water")).toBe(5);
+  expect(dashboardJson[0].unit).toBe("L");
+  expect(observedNumber(dashboardJson, "sleep")).toBeUndefined();
 });

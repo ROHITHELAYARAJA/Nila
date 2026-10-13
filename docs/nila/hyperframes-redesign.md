@@ -29,7 +29,7 @@ The filesystem skill inventory is recorded separately in installed-skill-audit.m
 3. Water, sleep, energy, stress and explicitly reported goals.
 4. Movement, meals, daily reflection and daily win.
 5. Voice report and weekly reporting consistency.
-6. A gentle footer and an expandable read-only 32-topic collection, keeping the first view compact.
+6. A gentle footer. The approved October 13 revision removes the 32-topic collection and metric detail popups; the dashboard holds the concise report.
 
 The ring is the mean of reported mood scores multiplied by ten, not a medical assessment. Missing days are gaps, never zero scores. Bars use labeled visual scales rather than invented personal targets. Text remains available for accessibility and essential context.
 

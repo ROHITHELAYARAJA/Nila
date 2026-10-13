@@ -1915,3 +1915,45 @@ input[type="range"] {
 .monthly-chart .chart-column:nth-child(2n) > span {
   visibility: hidden;
 }
+
+.signup-permission {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .auth-form {
+    animation: account-arrive 500ms ease both;
+  }
+  .skeleton div {
+    animation: loading-breathe 1.5s ease-in-out infinite alternate;
+  }
+  .skeleton div:nth-child(2) {
+    animation-delay: 150ms;
+  }
+  .skeleton div:nth-child(3) {
+    animation-delay: 300ms;
+  }
+}
+@keyframes account-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes loading-breathe {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+[data-motion="paused"] .skeleton div {
+  animation: none;
+}

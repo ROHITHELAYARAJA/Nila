@@ -10,7 +10,6 @@ import { dateWindow, voiceHistory } from "@nila/wellness";
 import { useProduct } from "./product-context";
 import { Modal, Notice, Skeleton } from "./ui";
 import { ScheduleForm } from "./setup";
-import { WellnessCollection, WellnessDetails } from "./wellness-cards";
 import { HyperframesVisual } from "./hyperframes-visual";
 import { Reveal } from "./dashboard-motion";
 import { OrbDays, MoodStressChart, dayMood } from "./orb-trends";
@@ -29,7 +28,6 @@ export function DashboardView() {
   const [range, setRange] = useState<"7" | "previous" | "30" | "all">("7");
   const [selected, setSelected] = useState<string | null>(null);
   const [scheduleOpen, setScheduleOpen] = useState(false);
-  const [detail, setDetail] = useState<string | null>(null);
   if (!data)
     return loading ? (
       <Skeleton />
@@ -218,20 +216,11 @@ export function DashboardView() {
           </section>
         </Reveal>
       </div>
-      <OrbMetrics observations={observations} onSelect={setDetail} />
-      <DailyCards
-        journal={journal}
-        dates={dates}
-        journals={history}
-        onSelect={setDetail}
-      />
+      <OrbMetrics observations={observations} />
+      <DailyCards journal={journal} dates={dates} journals={history} />
       <div className="orb-report-grid">
         <Reveal>
-          <VoiceReport
-            journal={journal}
-            date={dateLabel}
-            onSelect={setDetail}
-          />
+          <VoiceReport journal={journal} date={dateLabel} />
         </Reveal>
         <Reveal delay={90}>
           <WeeklyConsistency
@@ -260,17 +249,6 @@ export function DashboardView() {
           <ArrowClockwiseIcon size={20} />
         </button>
       </footer>
-      <Reveal>
-        <details className="wellness-drawer">
-          <summary>Explore your 32 wellness connections</summary>
-          <WellnessCollection
-            observations={observations}
-            data={data}
-            dates={dates}
-            onSelect={setDetail}
-          />
-        </details>
-      </Reveal>
       <Modal
         open={scheduleOpen}
         onOpenChange={setScheduleOpen}
@@ -278,21 +256,6 @@ export function DashboardView() {
         description="An evening phone conversation. Updates appear here after your approval."
       >
         <ScheduleForm />
-      </Modal>
-      <Modal
-        open={!!detail}
-        onOpenChange={(open) => {
-          if (!open) setDetail(null);
-        }}
-        title="A closer look"
-        description="Information from approved phone check-ins. Empty means not reported."
-      >
-        <WellnessDetails
-          topic={detail ?? "journal"}
-          data={data}
-          journals={available}
-          dates={dates}
-        />
       </Modal>
     </div>
   );
