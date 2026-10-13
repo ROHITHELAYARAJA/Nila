@@ -53,7 +53,7 @@ Approved voice result → authenticated API saves the call owner's journal in Su
 - [x] Create and verify HyperFrames artwork.
 - [x] Implement the reference layout and data-linked motion.
 - [x] Verify desktop/mobile, empty data, keyboard controls, reduced motion and live-value changes.
-- [ ] Record evidence and publish the verified website update to the existing Vercel project.
+- [x] Record evidence and publish the verified website update to the existing Vercel project.
 
 We can revise colors, motion pace, orb expressions and card placement together using this file. Telephone provider configuration and database migrations remain separate from visual changes.
 
@@ -64,3 +64,7 @@ Ten original transparent HyperFrames loops with PNG posters: seven weekday color
 ## Website verification
 
 Production build and TypeScript passed. Twelve desktop/mobile Playwright checks passed, including keyboard dialogs, account login buttons, missing-day behavior, changing JSON-backed visual fills, working video playback/pause, reduced-motion posters and overflow checks at 320/768/1024/1440 widths. Axe found zero violations in the tested light/dark dashboard and landing states. Exported artwork and desktop/mobile screenshots were inspected. A physical phone browser, new telephone call and new deployed backend wellness capture were not tested in this redesign.
+
+## Publication
+
+Published website commit `b8e7c41f167f46d3301814954bbab16de7e39a06` to the existing Vercel project on October 13, 2026. Vercel reports deployment `dpl_CicVYseatdcjfxH7m6bdRfZYKAt1` as Ready and lists https://nilavoiceai.vercel.app as its production alias. Review: https://github.com/ROHITHELAYARAJA/Nila/pull/4. This verifies the cloud build and domain assignment; it does not claim a new production phone call or backend migration.
