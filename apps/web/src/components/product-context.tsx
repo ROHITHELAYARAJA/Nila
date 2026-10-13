@@ -118,8 +118,23 @@ function sampleData(): Dashboard {
           },
           {
             topic: "activity" as const,
-            value: "a short walk",
-            quote: "I went for a short walk.",
+            value: `${18 + (i % 4) * 7} minutes walking`,
+            quote: `I walked for ${18 + (i % 4) * 7} minutes today.`,
+          },
+          {
+            topic: "nutrition" as const,
+            value: "3 meals",
+            quote: "I ate 3 meals today.",
+          },
+          {
+            topic: "stress" as const,
+            value: `stress ${2 + (i % 4)} out of 10`,
+            quote: `My stress is ${2 + (i % 4)} out of 10.`,
+          },
+          {
+            topic: "goals" as const,
+            value: "completed 3 of 5 goals",
+            quote: "I completed 3 of 5 goals today.",
           },
         ],
       }))

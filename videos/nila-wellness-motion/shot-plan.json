@@ -1,0 +1,29 @@
+{
+  "category": "logo-reveal",
+  "duration_s": 4,
+  "fps": 24,
+  "canvas": {
+    "w": 256,
+    "h": 256,
+    "aspect": "1:1"
+  },
+  "style": "Pastel glass wellness ornament, original SVG",
+  "palette": [
+    "#f1deff",
+    "#9653ff",
+    "#5929e9",
+    "#cba5ff"
+  ],
+  "export": "alpha-overlay",
+  "asset_needs": [],
+  "content": {
+    "logo": "original inline SVG",
+    "tagline": "",
+    "customize": "Gentle rise and reflected light"
+  },
+  "evaluated_blocks": [
+    "cosmic-orb",
+    "shimmer-sweep"
+  ],
+  "notes": "Small SVG assets avoid full-frame GPU shaders and carry no user data."
+}

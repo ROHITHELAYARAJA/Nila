@@ -13,15 +13,22 @@
     ]
   },
   "sources": {
-    "tokens": ["apps/web/src/app/globals.css", "apps/web/src/app/wellness.css"],
+    "tokens": [
+      "apps/web/src/app/globals.css",
+      "apps/web/src/app/wellness.css",
+      "apps/web/src/app/orb-dashboard.css"
+    ],
     "components": [
       "apps/web/src/components/dashboard.tsx",
       "apps/web/src/components/wellness-visuals.tsx",
       "apps/web/src/components/wellness-cards.tsx",
       "apps/web/src/components/ui.tsx"
     ],
-    "assets": [],
-    "instructions": ["docs/nila/voice-first-redesign.md"]
+    "assets": ["apps/web/public/animations/hyperframes"],
+    "instructions": [
+      "docs/nila/voice-first-redesign.md",
+      "docs/nila/hyperframes-redesign.md"
+    ]
   },
   "design": {
     "colorMode": "light and dark",
@@ -34,7 +41,7 @@
       "sage": "#e7ede5"
     },
     "typography": {
-      "display": "Georgia serif",
+      "display": "Self-hosted Manrope, bold navy",
       "body": "Self-hosted Manrope"
     },
     "spacing": {},
@@ -44,7 +51,7 @@
       "reduced": "Respects prefers-reduced-motion",
       "style": "Subtle opacity and transform"
     },
-    "density": "spacious"
+    "density": "compact reference-led dashboard"
   },
   "components": {
     "installed": [],
@@ -73,7 +80,8 @@
     "Adapt Dribbble mobile hierarchy into an original web layout",
     "Keep verified stack and privacy boundaries",
     "Use 21st deterministic review; catalog sign-in unavailable",
-    "User-requested emojis override minimalist-ui emoji ban"
+    "User-requested emojis override minimalist-ui emoji ban",
+    "User-selected screenshot layout with original HyperFrames orbs and silent motion"
   ],
   "evidence": [],
   "generatedAt": "2026-10-13T09:55:41.101Z"
