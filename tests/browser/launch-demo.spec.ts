@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 
 test.use({ channel: "chrome" });
 
-test("homepage demo replaces the sample card and supports pausing", async ({
+test("homepage demo plays continuously without playback or fullscreen buttons", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
@@ -20,18 +20,10 @@ test("homepage demo replaces the sample card and supports pausing", async ({
     .poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime))
     .toBeGreaterThan(0.1);
   expect(await video.evaluate((v: HTMLVideoElement) => v.muted)).toBe(true);
-  await page.getByRole("button", { name: "Pause product demo" }).click();
-  await expect
-    .poll(() => video.evaluate((v: HTMLVideoElement) => v.paused))
-    .toBe(true);
-  await page.getByRole("button", { name: "Play product demo" }).click();
-  await expect
-    .poll(() => video.evaluate((v: HTMLVideoElement) => v.paused))
-    .toBe(false);
+  await expect(page.getByRole("button", { name: /product demo/ })).toHaveCount(0);
+  expect(await video.evaluate((v: HTMLVideoElement) => v.autoplay && v.loop && !v.controls)).toBe(true);
   await page.locator("#privacy").scrollIntoViewIfNeeded();
-  await expect
-    .poll(() => video.evaluate((v: HTMLVideoElement) => v.paused))
-    .toBe(true);
+  await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(false);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
