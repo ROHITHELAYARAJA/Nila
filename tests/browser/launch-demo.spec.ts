@@ -21,10 +21,9 @@ test("homepage demo plays continuously without playback or fullscreen buttons", 
     .toBeGreaterThan(0.1);
   expect(await video.evaluate((v: HTMLVideoElement) => v.muted)).toBe(true);
   await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.duration)).toBe(30);
-  await page.getByRole("button", { name: "Turn sound on" }).click();
+  await expect(page.getByRole("button", { name: "Turn sound on" })).toHaveCount(0);
+  await page.getByRole("button", { name: "Enable sound for the Nila video" }).click();
   expect(await video.evaluate((v: HTMLVideoElement) => v.muted)).toBe(false);
-  await page.getByRole("button", { name: "Mute sound" }).click();
-  expect(await video.evaluate((v: HTMLVideoElement) => v.muted)).toBe(true);
   expect(await video.evaluate((v: HTMLVideoElement) => v.disablePictureInPicture)).toBe(true);
   expect(await video.evaluate((v: HTMLVideoElement) => getComputedStyle(v).pointerEvents)).toBe("none");
   if (page.viewportSize()!.width > 1000) {
