@@ -14,6 +14,7 @@ import { useProduct } from "./product-context";
 import { browserClient } from "@/lib/supabase";
 import { SettingsView } from "./settings";
 import { ScheduleForm } from "./setup";
+import { MotionToggle } from "./dashboard-motion";
 
 export function AppShell({ children }: { children: ReactNode; view?: string }) {
   const { data, error, liveUpdateError, preview, refresh, loading } =
@@ -78,6 +79,7 @@ export function AppShell({ children }: { children: ReactNode; view?: string }) {
             <Brand />
             <span className="header-note">Your private little universe</span>
             <div className="header-actions">
+              <MotionToggle />
               <ThemeToggle />
               <button
                 className="profile-trigger"

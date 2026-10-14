@@ -1,0 +1,7 @@
+.hyperframes/
+.thumbnails/
+proof/
+renders-*.log
+check-*.log
+snapshot-*.log
+node_modules/

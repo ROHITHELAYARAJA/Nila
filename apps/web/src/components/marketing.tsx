@@ -5,6 +5,8 @@ import {
   MoonStarsIcon,
 } from "@phosphor-icons/react/ssr";
 import { Brand, ThemeToggle } from "./ui";
+import { Reveal } from "./dashboard-motion";
+import { LaunchDemo } from "./launch-demo";
 import { MarketingFAQ, MarketingMenu } from "./marketing-interactions";
 const faqs = [
   [
@@ -50,7 +52,7 @@ export function Marketing() {
       </header>
       <main id="main">
         <section className="container voice-first-hero">
-          <div className="voice-first-copy">
+          <Reveal className="voice-first-copy">
             <span className="eyebrow">A NIGHTLY CALL. A LITTLE CLARITY.</span>
             <h1>
               Your day has a story.
@@ -73,51 +75,10 @@ export function Marketing() {
             <span className="caption">
               For adults · No daily forms · Your approval comes first
             </span>
-          </div>
-          <div
-            className="landing-snapshot"
-            aria-label="Illustrative wellness snapshot"
-          >
-            <div className="panel-top">
-              <span>🌙 A little view of your day</span>
-              <span className="small-chip">Sample</span>
-            </div>
-            <div className="landing-mood">
-              <span aria-hidden="true">🙂</span>
-              <strong>
-                7 <small>/ 10</small>
-              </strong>
-            </div>
-            <div className="landing-metrics">
-              <span>
-                💧
-                <strong>
-                  1.8 <small>L</small>
-                </strong>
-              </span>
-              <span>
-                😴
-                <strong>
-                  7 <small>h</small>
-                </strong>
-              </span>
-              <span>
-                ⚡
-                <strong>
-                  8 <small>/ 10</small>
-                </strong>
-              </span>
-            </div>
-            <div
-              className="landing-days"
-              aria-label="Illustrative mood history"
-            >
-              😐 🙂 ◌ 😄 🙂 🙂
-            </div>
-            <p>
-              “I completed my project.” <span aria-hidden="true">🏆</span>
-            </p>
-          </div>
+          </Reveal>
+          <Reveal delay={120} className="landing-launch">
+            <LaunchDemo />
+          </Reveal>
         </section>
         <section id="experience" className="container section">
           <div className="section-title">
@@ -126,7 +87,7 @@ export function Marketing() {
               <h2>A conversation becomes a constellation.</h2>
             </div>
           </div>
-          <div className="landing-steps">
+          <Reveal className="landing-steps">
             <article>
               <span>01 · 📞</span>
               <h3>An evening hello</h3>
@@ -151,10 +112,10 @@ export function Marketing() {
                 together. See seven days, last week or a month.
               </p>
             </article>
-          </div>
+          </Reveal>
         </section>
         <section id="self-care" className="container section">
-          <div className="landing-feature-strip">
+          <Reveal className="landing-feature-strip">
             <MoonStarsIcon size={40} weight="duotone" />
             <div>
               <span className="eyebrow">32 WAYS TO NOTICE YOURSELF</span>
@@ -168,10 +129,10 @@ export function Marketing() {
             <Link href="/preview" className="button-link secondary">
               Take a look <ArrowRightIcon size={16} />
             </Link>
-          </div>
+          </Reveal>
         </section>
         <section id="privacy" className="container section">
-          <div className="privacy-section">
+          <Reveal className="privacy-section">
             <ShieldCheckIcon size={42} weight="duotone" />
             <div>
               <span className="eyebrow">YOUR SPACE BELONGS TO YOU</span>
@@ -185,7 +146,7 @@ export function Marketing() {
                 Our privacy approach <ArrowRightIcon size={16} />
               </Link>
             </div>
-          </div>
+          </Reveal>
         </section>
         <section className="container section">
           <div className="section-title">
@@ -194,13 +155,13 @@ export function Marketing() {
           <MarketingFAQ faqs={faqs} />
         </section>
         <section className="container section">
-          <div className="landing-final">
+          <Reveal className="landing-final">
             <span aria-hidden="true">☾</span>
             <h2>A little room for the day you've had.</h2>
             <Link className="button-link" href="/auth?mode=signup">
               Begin with Nila <ArrowRightIcon size={17} />
             </Link>
-          </div>
+          </Reveal>
         </section>
       </main>
       <footer className="container marketing-footer">

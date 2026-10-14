@@ -125,6 +125,7 @@ export function AuthForm() {
         </p>
         <Image
           src="/nila-art.png"
+          loading="eager"
           width={750}
           height={500}
           alt="Soft lavender loop and sage leaves"
@@ -153,12 +154,36 @@ export function AuthForm() {
         </p>
         {error && <Notice error>{error}</Notice>}
         {message && <Notice>{message}</Notice>}
+        {!factor && mode === "signup" && (
+          <label className="check signup-permission">
+            <input
+              type="checkbox"
+              checked={adult}
+              onChange={(e) => {
+                setAdult(e.target.checked);
+                setError("");
+              }}
+            />
+            <span>
+              I am 18 or older and have read the{" "}
+              <Link className="text-link" href="/privacy">
+                privacy approach
+              </Link>
+              .
+            </span>
+          </label>
+        )}
         {!factor && ["login", "signup"].includes(mode) && (
           <>
+            {mode === "signup" && !adult && (
+              <p className="caption">
+                Confirm your age above, then choose how to continue.
+              </p>
+            )}
             <Button
               className="secondary"
               style={{ marginTop: 30 }}
-              disabled={busy}
+              disabled={busy || (mode === "signup" && !adult)}
               onClick={() => void oauth("google")}
             >
               <GoogleLogoIcon weight="bold" size={20} />
@@ -167,7 +192,7 @@ export function AuthForm() {
             <Button
               className="secondary"
               style={{ marginTop: 12 }}
-              disabled={busy}
+              disabled={busy || (mode === "signup" && !adult)}
               onClick={() => void oauth("github")}
             >
               <GithubLogoIcon weight="bold" size={20} />
@@ -222,23 +247,6 @@ export function AuthForm() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </Field>
-              )}
-              {mode === "signup" && (
-                <label className="check">
-                  <input
-                    type="checkbox"
-                    checked={adult}
-                    onChange={(e) => setAdult(e.target.checked)}
-                    required
-                  />
-                  <span>
-                    I am 18 or older and have read the{" "}
-                    <Link className="text-link" href="/privacy">
-                      privacy approach
-                    </Link>
-                    .
-                  </span>
-                </label>
               )}
             </>
           )}

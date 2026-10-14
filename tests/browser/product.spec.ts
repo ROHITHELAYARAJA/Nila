@@ -11,7 +11,13 @@ test("visual dashboard reads phone data, switches periods and opens the profile"
   await expect(
     page.getByRole("heading", { name: "Your days, in a softer light." }),
   ).toBeVisible();
-  await expect(page.locator(".constellation button")).toHaveCount(32);
+  await expect(page.locator(".constellation button")).toHaveCount(0);
+  await expect(
+    page.getByText("Explore your 32 wellness connections"),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: /View.*Water|closer look/i }),
+  ).toHaveCount(0);
   await expect(page.locator("main input, main textarea")).toHaveCount(0);
   await expect(
     page.locator(".metric-panel.water .metric-number"),
