@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 export function LaunchDemo() {
   const video = useRef<HTMLVideoElement>(null);
   const [reduced, setReduced] = useState(true);
+  const [sound, setSound] = useState(false);
 
   useEffect(() => {
     const preference = matchMedia("(prefers-reduced-motion: reduce)");
@@ -27,12 +28,12 @@ export function LaunchDemo() {
         <video
           ref={video}
           aria-label="Illustrative Nila demonstration: an incoming call becomes approved answers and an updated wellness dashboard."
-          src={reduced ? undefined : "/videos/nila-homepage-demo.mp4"}
-          poster="/videos/nila-homepage-poster.png"
-          width={1920}
-          height={1080}
+          src={reduced ? undefined : "/videos/nila-launch-reel.mp4"}
+          poster="/videos/nila-video-poster.png"
+          width={1080}
+          height={1920}
           autoPlay={!reduced}
-          muted
+          muted={!sound}
           loop
           disablePictureInPicture
           disableRemotePlayback
@@ -42,6 +43,22 @@ export function LaunchDemo() {
           preload="metadata"
         />
       </div>
+      {!reduced && (
+        <button
+          type="button"
+          className="launch-demo-sound"
+          aria-pressed={sound}
+          onClick={() => {
+            const player = video.current;
+            if (!player) return;
+            player.muted = sound;
+            setSound(!sound);
+            void player.play().catch(() => {});
+          }}
+        >
+          {sound ? "Mute sound" : "Turn sound on"}
+        </button>
+      )}
       <p className="launch-demo-caption">One call. A clearer day.</p>
     </div>
   );
