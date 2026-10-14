@@ -5,8 +5,8 @@ import {
   MoonStarsIcon,
 } from "@phosphor-icons/react/ssr";
 import { Brand, ThemeToggle } from "./ui";
-import { Reveal, MotionToggle } from "./dashboard-motion";
-import { HyperframesVisual } from "./hyperframes-visual";
+import { Reveal } from "./dashboard-motion";
+import { LaunchDemo } from "./launch-demo";
 import { MarketingFAQ, MarketingMenu } from "./marketing-interactions";
 const faqs = [
   [
@@ -46,7 +46,6 @@ export function Marketing() {
           <Link href="/auth?mode=signup" className="button-link">
             Your little space <ArrowRightIcon size={16} />
           </Link>
-          <MotionToggle />
           <ThemeToggle />
         </nav>
         <MarketingMenu />
@@ -77,50 +76,8 @@ export function Marketing() {
               For adults · No daily forms · Your approval comes first
             </span>
           </Reveal>
-          <Reveal
-            delay={120}
-            className="landing-snapshot"
-            aria-label="Illustrative wellness snapshot"
-          >
-            <div className="panel-top">
-              <span>🌙 A little view of your day</span>
-              <span className="small-chip">Sample</span>
-            </div>
-            <div className="landing-mood">
-              <HyperframesVisual name="saturday" />
-              <strong>
-                7 <small>/ 10</small>
-              </strong>
-            </div>
-            <div className="landing-metrics">
-              <span>
-                💧
-                <strong>
-                  1.8 <small>L</small>
-                </strong>
-              </span>
-              <span>
-                😴
-                <strong>
-                  7 <small>h</small>
-                </strong>
-              </span>
-              <span>
-                ⚡
-                <strong>
-                  8 <small>/ 10</small>
-                </strong>
-              </span>
-            </div>
-            <div
-              className="landing-days"
-              aria-label="Illustrative mood history"
-            >
-              😐 🙂 ◌ 😄 🙂 🙂
-            </div>
-            <p>
-              “I completed my project.” <span aria-hidden="true">🏆</span>
-            </p>
+          <Reveal delay={120} className="landing-launch">
+            <LaunchDemo />
           </Reveal>
         </section>
         <section id="experience" className="container section">
