@@ -20,6 +20,11 @@ test("homepage demo plays continuously without playback or fullscreen buttons", 
     .poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime))
     .toBeGreaterThan(0.1);
   expect(await video.evaluate((v: HTMLVideoElement) => v.muted)).toBe(true);
+  expect(await video.evaluate((v: HTMLVideoElement) => v.disablePictureInPicture)).toBe(true);
+  expect(await video.evaluate((v: HTMLVideoElement) => getComputedStyle(v).pointerEvents)).toBe("none");
+  if (page.viewportSize()!.width > 1000) {
+    expect((await video.boundingBox())!.width).toBeGreaterThan(650);
+  }
   await expect(page.getByRole("button", { name: /product demo/ })).toHaveCount(0);
   expect(await video.evaluate((v: HTMLVideoElement) => v.autoplay && v.loop && !v.controls)).toBe(true);
   await page.locator("#privacy").scrollIntoViewIfNeeded();

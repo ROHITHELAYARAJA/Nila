@@ -34,6 +34,10 @@ export function LaunchDemo() {
           autoPlay={!reduced}
           muted
           loop
+          disablePictureInPicture
+          disableRemotePlayback
+          controlsList="nodownload nofullscreen noremoteplayback"
+          tabIndex={-1}
           playsInline
           preload="metadata"
         />
